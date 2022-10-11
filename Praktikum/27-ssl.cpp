@@ -40,6 +40,21 @@ void insertDepan(int databaru)
     cout<<"Data masuk\n";
 }
 
+void insertBelakang(int databaru){
+    TNode *baru;
+    baru = new TNode;
+    baru->data = databaru;
+    baru->next = NULL;
+    if(head==NULL){
+        head=baru;
+        tail=baru;
+    }else{
+        tail->next = baru;
+        tail=baru;
+    }
+    cout<<"Data masuk\n";
+}
+
 void tampil(){
     TNode *bantu;
     bantu=head;
@@ -100,10 +115,11 @@ main()
         cout<<" =   PROGRAM LINKED LIST    ="<<endl;
         cout<<" ============================"<<endl;
         cout<<" = 1. Insert Depan          ="<<endl;
-        cout<<" = 2. Delete Depan          ="<<endl;
-        cout<<" = 3. Tampil Data           ="<<endl;
-        cout<<" = 4. Clear                 ="<<endl;
-        cout<<" = 5. Exit                  ="<<endl;
+        cout<<" = 2. Insert Belakang       ="<<endl;
+        cout<<" = 3. Delete Depan          ="<<endl;
+        cout<<" = 4. Tampil Data           ="<<endl;
+        cout<<" = 5. Clear                 ="<<endl;
+        cout<<" = 6. Exit                  ="<<endl;
         cout<<" ============================"<<endl;
         cout<<" Masukan Pilihan : ";cin>>pil;
         switch (pil)
@@ -114,22 +130,27 @@ main()
                 break;
             }
             case 2: system("cls");{
-                hapusDepan();
+                cout<<"Masukan Data = ";cin>>databaru;
+                insertBelakang(databaru);
                 break;
             }
             case 3: system("cls");{
-                tampil();
+                hapusDepan();
                 break;
             }
             case 4: system("cls");{
-                clear();
+                tampil();
                 break;
             }
             case 5: system("cls");{
+                clear();
+                break;
+            }
+            case 6: system("cls");{
                 return 0;
                 break;
             }
-            default : system("cls");
+            default: system("cls");
             {
                 cout<<"\n Maaf, Pilihan yang anda pilih tidak tersedia!";
             }
