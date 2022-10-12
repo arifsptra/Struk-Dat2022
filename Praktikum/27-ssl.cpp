@@ -61,7 +61,6 @@ void insertSetelah(int databaru){
     baru->data = databaru;
     TNode *bantu;
     bantu = new TNode;
-    // baru->next = NULL;
     int setelah;
     if(head==NULL){
         head=baru;
