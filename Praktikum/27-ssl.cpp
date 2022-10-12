@@ -55,6 +55,37 @@ void insertBelakang(int databaru){
     cout<<"Data masuk\n";
 }
 
+void insertSetelah(int databaru){
+    TNode *baru;
+    baru = new TNode;
+    baru->data = databaru;
+    TNode *bantu;
+    bantu = new TNode;
+    // baru->next = NULL;
+    int setelah;
+    if(head==NULL){
+        head=baru;
+        tail=baru;
+    }else{
+        cout<<"Setelah Data = ";cin >>setelah;
+        int ketemu=0;
+        bantu=head;
+        do{
+            if(setelah==bantu->data){
+                baru->next = bantu->next;
+                bantu->next = baru;
+                ketemu=1;
+            }
+            bantu=bantu->next;
+        }while(bantu!=NULL);
+        if(ketemu==0){
+            tail->next = baru;
+            tail=baru;
+        }
+    }
+    cout<<"Data masuk\n";
+}
+
 void tampil(){
     TNode *bantu;
     bantu=head;
@@ -116,10 +147,11 @@ main()
         cout<<" ============================"<<endl;
         cout<<" = 1. Insert Depan          ="<<endl;
         cout<<" = 2. Insert Belakang       ="<<endl;
-        cout<<" = 3. Delete Depan          ="<<endl;
-        cout<<" = 4. Tampil Data           ="<<endl;
-        cout<<" = 5. Clear                 ="<<endl;
-        cout<<" = 6. Exit                  ="<<endl;
+        cout<<" = 3. Insert Setelah        ="<<endl;
+        cout<<" = 4. Delete Depan          ="<<endl;
+        cout<<" = 5. Tampil Data           ="<<endl;
+        cout<<" = 6. Clear                 ="<<endl;
+        cout<<" = 7. Exit                  ="<<endl;
         cout<<" ============================"<<endl;
         cout<<" Masukan Pilihan : ";cin>>pil;
         switch (pil)
@@ -135,21 +167,27 @@ main()
                 break;
             }
             case 3: system("cls");{
-                hapusDepan();
+                cout<<"Masukan Data = ";cin >>databaru;
+                insertSetelah(databaru);
                 break;
             }
             case 4: system("cls");{
-                tampil();
+                hapusDepan();
                 break;
             }
             case 5: system("cls");{
-                clear();
+                tampil();
                 break;
             }
             case 6: system("cls");{
+                clear();
+                break;
+            }
+            case 7: system("cls");{
                 return 0;
                 break;
             }
+
             default: system("cls");
             {
                 cout<<"\n Maaf, Pilihan yang anda pilih tidak tersedia!";
