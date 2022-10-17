@@ -192,15 +192,15 @@ void hapusBelakang()
     bantu=head;
     int d;
     hapus=tail;
-    if(bantu->next->nilaiX==tail->nilaiX){
-        tail=bantu;
-        d=hapus->nilaiX;
-        delete hapus;
-        tail->next=NULL;
-    }else{
-        d=tail->nilaiX;
-        head=tail=NULL;
-    }
+    do{
+        if(bantu->next->nilaiX==tail->nilaiX){
+            tail=bantu;
+            d=tail->next->nilaiX;
+            delete hapus;
+            tail->next=NULL;
+        }
+        bantu=bantu->next;
+    }while(bantu!=NULL);
     cout<<d<<" terhapus";
 }
 
