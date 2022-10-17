@@ -182,29 +182,26 @@ void hapusDepan()
             d=tail->nilaiX;
             head=tail=NULL;
         }
-    cout<<d<<"terhapus";
+    cout<<d<<" terhapus";
     }else cout<<"Masih kosong\n";
 }
 
 void hapusBelakang()
 {
-    TNode *hapus;
+    TNode *hapus, *bantu;
+    bantu=head;
     int d;
-    if (isEmpty()==0)
-    {
-        if(head!=tail)
-        {
-            hapus=head;
-            d=hapus->nilaiX;
-            head=head->next;
-            delete hapus;
-        }else
-        {
-            d=tail->nilaiX;
-            head=tail=NULL;
-        }
-    cout<<d<<"terhapus";
-    }else cout<<"Masih kosong\n";
+    hapus=tail;
+    if(bantu->next->nilaiX==tail->nilaiX){
+        tail=bantu;
+        d=hapus->nilaiX;
+        delete hapus;
+        tail->next=NULL;
+    }else{
+        d=tail->nilaiX;
+        head=tail=NULL;
+    }
+    cout<<d<<" terhapus";
 }
 
 void clear()
@@ -268,6 +265,10 @@ main()
             }
             case 5: system("cls");{
                 hapusDepan();
+                break;
+            }
+            case 6: system("cls");{
+                hapusBelakang();
                 break;
             }
             case 8: system("cls");{
