@@ -204,6 +204,21 @@ void hapusBelakang()
     cout<<d<<" terhapus";
 }
 
+void hapusTengah(int hapusData){
+    TNode *hapus, *bantu;
+    bantu=head;
+    do{
+        if(bantu->next->nilaiX==hapusData){
+            hapus=bantu->next;
+            bantu->next=bantu->next->next;
+            delete hapus;
+            break;
+        }
+        bantu = bantu->next;     
+    }while(bantu!=NULL);
+    cout<<hapusData<<" terhapus";
+}
+
 void clear()
 {
     TNode *bantu, *hapus;
@@ -224,7 +239,6 @@ main()
     do
     {
         system("cls");
-        tampil();
         cout<<endl;
         cout<<" ============================"<<endl;
         cout<<" =   PROGRAM LINKED LIST    ="<<endl;
@@ -269,6 +283,12 @@ main()
             }
             case 6: system("cls");{
                 hapusBelakang();
+                break;
+            }
+            case 7: system("cls");{
+                int hapusData;
+                cout << "Hapus Data: "; cin >> hapusData;
+                hapusTengah(hapusData);
                 break;
             }
             case 8: system("cls");{
