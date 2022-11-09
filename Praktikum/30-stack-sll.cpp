@@ -34,7 +34,7 @@ void insert_belakang(){
     }
 }
 
-void hapus_belakang(){
+void delete_belakang(){
     stack *hapus, *bantu;
     bantu=head;
     string d;
@@ -45,6 +45,7 @@ void hapus_belakang(){
             d=tail->next->nama;
             delete hapus;
             tail->next=NULL;
+            top--;
         }
         bantu=bantu->next;
     }while(bantu!=NULL);
@@ -81,15 +82,14 @@ int main()
             case 1: system("cls"); {
                 if(top<=maxs){
                     insert_belakang();
+                    top++;
                 }else{
                     cout << "Sorry, memory is full!" << endl;
                 }
-                top++;
                 break;
             }
             case 2: system("cls"); {
-                hapus_belakang();
-                top--;
+                delete_belakang();
                 break;
             }
             case 3: system("cls"); {
