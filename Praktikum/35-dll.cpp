@@ -38,6 +38,34 @@ void tambahDataDepan(int nilaiData){
     }
 }
 
+void tambahDataTengah(int nilaiData){
+    dll *baru;
+    dll *bantu;
+    baru = new dll;
+    baru->nilai = nilaiData;
+    baru->next = NULL;
+    baru->prev = NULL;
+    if(head==NULL){
+        head = baru;
+        tail = baru;
+        tail->next = head;
+        head->prev = tail;
+    }else {
+        int data;
+        cout << "Setelah Data: "; cin >> data;
+        bantu = head;
+        do{
+            if(data==bantu->nilai){
+                baru->next = bantu->next;
+                baru->prev = bantu;
+                bantu->next = baru;
+                bantu->next->prev = baru;
+            }
+            bantu = bantu->next;
+        }while(bantu!=head);
+    }
+}
+
 void tambahDataBelakang(int nilaiData){
     dll *baru;
     baru = new dll;
@@ -55,6 +83,87 @@ void tambahDataBelakang(int nilaiData){
         tail = baru;
         tail->next = head;
         head->prev = tail;
+    }
+}
+
+void hapusDataDepan(){
+    dll *hapus;
+    if(head==NULL){
+        cout << "List Masih Kosong";
+    }else if(head==tail){
+        cout << head->nilai << " Terhapus";
+        delete head;
+        head = NULL;
+        tail = NULL;
+    }else{
+        hapus = head;
+        head = head->next;
+        cout << hapus->nilai << " Terhapus";
+        delete hapus;
+        tail->next = head;
+        head->prev = tail;
+    }
+}
+
+void hapusDataTengah(){
+    dll *hapus;
+    dll *bantu;
+    int ketemu=0;
+    if(head==NULL){
+        cout << "List Masih Kosong";
+    }else{
+        int data;
+        cout << "Hapus Data: "; cin >> data;
+        bantu = head;
+        do{
+            if(data==bantu->nilai){
+                ketemu=1;
+                bantu->prev->next = bantu->next;
+                bantu->next->prev = bantu->prev;
+                cout << bantu->nilai << " Terhapus";
+                delete hapus;
+            }
+            bantu = bantu->next;
+        }while(bantu!=head);
+        if(ketemu==0){
+            cout << "Data Tidak ditemukan";
+        }
+    }
+}
+
+void hapusDataBelakang(){
+    dll *hapus;
+    if(head==NULL){
+        cout << "List Masih Kosong";
+    }else if(head==tail){
+        delete head;
+        head = NULL;
+        tail = NULL;
+    }else{
+        hapus = tail;
+        tail = tail->prev;
+        cout << hapus->nilai << " Terhapus";
+        delete hapus;
+        tail->next = head;
+        head->prev = tail;
+    }
+}
+
+void cariData(){
+    dll *bantu;
+    if(head==NULL){
+        cout << "List Masih Kosong";
+    }else{
+        int data;
+        cout << "Hapus Data: "; cin >> data;
+        bantu = head;
+        do{
+            if(data==bantu->nilai){
+                cout << bantu->nilai << " Ketemu" << endl;
+                cout << "di Memori " << &bantu->nilai;
+            }
+            bantu = bantu->next;
+        }while(bantu!=head);
     }
 }
 
@@ -100,9 +209,30 @@ int main(){
             tambahDataDepan(nilaiData);
             break;
         }
+        case 2: system("cls"); {
+            inputData();
+            tambahDataTengah(nilaiData);
+            break;
+        }
         case 3: system("cls"); {
             inputData();
             tambahDataBelakang(nilaiData);
+            break;
+        }
+        case 4: system("cls"); {
+            hapusDataDepan();
+            break;
+        }
+        case 5: system("cls"); {
+            hapusDataTengah();
+            break;
+        }
+        case 6: system("cls"); {
+            hapusDataBelakang();
+            break;
+        }
+        case 7: system("cls"); {
+            cariData();
             break;
         }
         case 8: system("cls"); {
