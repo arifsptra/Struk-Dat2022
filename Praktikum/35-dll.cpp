@@ -155,7 +155,7 @@ void cariData(){
         cout << "List Masih Kosong";
     }else{
         int data;
-        cout << "Hapus Data: "; cin >> data;
+        cout << "Cari Data: "; cin >> data;
         bantu = head;
         do{
             if(data==bantu->nilai){
