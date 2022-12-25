@@ -18,6 +18,24 @@ lagu *tail = NULL;
 string jdl[10] = {"Hati Hati Dijalan", "Ambyar", "Sisa Rasa", "What have You Done", "Going Under", "The Catalyst", "Menghapus Jejakmu", "Milik Orang"};
 int drs[10] = {4, 6, 5, 6, 5, 7, 6, 8};
 string gnr[10] = {"POP", "DANGDUT", "POP", "ROCK", "ROCK", "ROCK", "POP", "DANGDUT"};
+string kelgnr[10];
+
+// void kelompokGenre(){
+//     int x=0;
+//     for(int i = 0; i < 10; i++){
+//         if(i==0){
+//             kelgnr[x]=gnr[i];
+//             x++;
+//         }else{
+//             for(int j = 0; j < x; j++){
+//                 if(kelgnr[x-1]!=gnr[i]){
+//                     kelgnr[x] = gnr[i];
+//                     x++;
+//                 }
+//             }
+//         }
+//     }
+// }
 
 void templateInput(){
     cin.ignore();
@@ -110,18 +128,49 @@ void tampilData(){
 
 void cariData(){
     lagu *bantu;
-    if(head==NULL){
-        cout << "List Masih Kosong";
-    }else{
-        string data;
-        cout << "Cari Data: "; cin >> data;
-        bantu = head;
-        do{
-            if(data==bantu->genre){
-                cout << bantu->genre << "\t\t" << bantu->durasi << "\t" << bantu->judul << endl;
+    bantu=head;
+    string cari1, cari2;
+    bool ketemu=false;
+    int x=1;
+    if(head==NULL)
+    {
+        cout<<"Data Kosong"<<endl;  getch();
+    }
+    else
+    {
+        cout<<"Masukkan Genre 1 : ";
+        cin.ignore(1, '\n');
+        getline(cin,cari1);
+        cout << "\n\nGenre Lagu yang dicari ";
+        do
+        {
+            if(cari1==bantu->genre)
+            {
+                ketemu=true;
+                cout<< x << " ";
             }
-            bantu = bantu->next;
-        }while(bantu!=head);
+            bantu=bantu->next;
+            x++;
+        }
+        while(bantu!=head);
+        x = 1;
+        cout << "\n\nGenre lagu lainnya\n" << endl;
+        do
+        {
+            if(cari1!=bantu->genre)
+            {
+                ketemu=true;
+                cout<< bantu->genre << " diurutan : " << x << " "<<endl;
+            }
+            bantu=bantu->next;
+            x++;
+        }
+        while(bantu!=head);
+        getch();
+    }
+    if (ketemu==false)
+    {
+        cout<<"Genre Tidak Ditemukan"<<endl;  getch();
     }
 }
 
